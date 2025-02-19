@@ -8,6 +8,33 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
+
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
 export class AppComponent {
-  title = 'gerenciador';
+  titulo: string = 'Gerenciador de Tarefas';
+  novaTarefa: string = '';
+  tarefas: { nome: string; concluida: boolean }[] = [];
+  exibirLista: boolean = true;
+
+  adicionarTarefa() {
+    if (this.novaTarefa.trim()) {
+      this.tarefas.push({ nome: this.novaTarefa, concluida: false });
+      this.novaTarefa = '';
+    }
+  }
+
+  alternarConclusao(tarefa: { nome: string; concluida: boolean }) {
+    tarefa.concluida = !tarefa.concluida;
+  }
+
+  toggleLista() {
+    this.exibirLista = !this.exibirLista;
+  }
 }
+
